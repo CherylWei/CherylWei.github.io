@@ -1,2 +1,11 @@
-<!--put your comment here-->
+<!DOCTYPE html> 
+<html>
+<body>
+<div id="header">
+Girls generation is my favorite artist.
+</div><!-- end of introduction -->
 
+<p>Taeyeon is the<span style="leader">and the main vocal</span> of Girls Generationp</p>
+
+</body>
+</html>
