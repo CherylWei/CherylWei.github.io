@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* background-color name */
+h1 {background-color: DarkCyan;}
 
+/* rgb value */
+p {background-color: rgb(100,100,90);}
+</style>
+</head>
+<body>
+
+<h1>ONWARD</h1>
+
+<div>
+  <h2>The Most Positive Quotes From ONWARD</h2>
+  <p>“I hope there’s a little magic left in you.” Even when we don’t feel like there’s any hope, there’s always something we can hold on to, and it’s within.</p>
+</div>
+
+<p>My best friend is Mickey.</p>
+
+<p>I will not be styled.</p>
+
+
+
+h1 {
+  background-color: red;
+  opacity: 0.1;
+}
+p {
+  background-color: red;
+  opacity: 1;
+}
+div {
+  background-color: red;
+  opacity: 0.5;
+}
+#div_rgba {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+<head>
+<style type="text/css">
+	body {
+	font-family: arial;
+	background-color: rgb(200,200,200);}
+	h1, h2 {color: red;}
+	h3 {color: #108000;
+		font-size: 60px}
+	p {color: rgb(20,20,255);}
+</style>
+
+</body>
+</html>
