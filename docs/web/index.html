@@ -93,12 +93,15 @@ body {
     background-color: #444;
   }
   */
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
-	
-#fiexd-header{
-  position:fixed; /*固定位置定位*/
-  top:0; /*距離上方 0 像素*/
-  z-index:1; /*重疊時會在其他元素之上*/
+
+.sticky + .content {
+  padding-top: 60px;
 }
 </style>
 </head>
@@ -170,7 +173,7 @@ p.outset {border-style: outset;}
 
 </style>
 
-		
+		<div class="content">
 		<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="60%" color=Indigo SIZE=3>
 		<h1>About Me</h1>
 		<p><i>Freshman, </i>studied in the Department of Business Administration in <abbr title="National Taipei University">NTPU.<abbr/></p>
@@ -190,5 +193,22 @@ p.outset {border-style: outset;}
 		<h1>My Style.<a href="#" class="fa fa-instagram"></a></h1>
 		<p>Fantasy. Shines at Spray Paints.</p>
 		<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="60%" color=Indigo SIZE=3>
+	<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
+
+	
+			
 	</body>
 </html>
