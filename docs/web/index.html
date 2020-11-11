@@ -4,6 +4,7 @@
 		<title>Home</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 <body>
     
@@ -104,6 +105,39 @@ body {
 .nav + .content {
   padding-top: 60px;
 }
+	
+	
+.dropbtn {
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+ 
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 </style>
 </head>
 
@@ -113,8 +147,23 @@ body {
        <ul>
         <li class="home"><a href="#">Home</a></li>
         <li class="tutorials"><a href="https://CherylWei.github.io/web/example1.html">Tips</a></li>
-        <li class="about"><a href="https://CherylWei.github.io/images/empty.html">Works</a></li>
+	       <div class="dropdown">
+  <button class="dropbtn">Works</button>
+  <div class="dropdown-content">
+   <li class="about"><a href="https://CherylWei.github.io/images/empty.html">Link 1</a></li>
+    <a href="https://CherylWei.github.io/images/empty.html">Link 2</a>
+	  
         <li class="contact"><a href="mailto:sonesnsdseo@gmail.com">Contact</a></li>
+	       
+	       
+	       
+<div class="dropdown">
+  <button class="dropbtn">Works</button>
+  <div class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+ 
+  </div>
       </ul>
     </div>
   </header>
