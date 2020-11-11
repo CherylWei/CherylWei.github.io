@@ -83,6 +83,15 @@ body {
   }
   */
 }
+.nav {
+  position: fixed;
+ top: 0;
+  width: 100%;
+}
+
+.nav + .content {
+  padding-top: 60px;
+}
 </style>
 </head>
 
@@ -158,6 +167,7 @@ h4 {
 p.outset {border-style: outset;}
 
 </style>
+	<div class="content">
 	<h1>Steps to draw a complete work</h1>
 	<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="60%" color=Indigo SIZE=3>
 
@@ -253,7 +263,20 @@ p.outset {border-style: outset;}
 	<h2>Step5-Adjustment</h2>
 	<p>Now is the time to adjust your whole work!</p>
 	<p style="color:Crimson;">And of course, use the decoration tool to make your art more special.</p>
-		
+		<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>	
 		
 		
 <h3><a href="#top">Top</a></h3>
