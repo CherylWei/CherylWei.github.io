@@ -181,60 +181,78 @@ div.container {
   padding: 10px 20px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 </style>
 	
 	
 	
 	
 <body>
-	</br></br></br>
+</br></br></br>
+<div class="row">
+ <div class="column">
 <div class="polaroid">
   <img
     src="食物.jpg"
 	width="570">
   <div class="container">
   <p>Want some hamburgers?</p>
-  </div>
+  </div></div>
 </div>
 <div class="polaroid">
-  <align="right"><img
+   <div class="column"><img
     src="獸人.jpg"
 	width="570">
   <div class="container">
   <p>Want some hamburgers?</p>
-  </div>
+  </div></div>
 </div>
 <div class="polaroid">
-  <img
+   <div class="column"><img
     src="horror2.jpg"
 	width="570">
   <div class="container">
   <p>Want some hamburgers?</p>
-  </div>
+  </div></div>
 </div>
 <div class="polaroid">
-<img
+ <div class="column"><img
     src="water.jpg"
 	width="570">
   <div class="container">
   <p>Want some hamburgers?</p>
-  </div>
+  </div></div>
 </div>
 <div class="polaroid">
-<img
+ <div class="column"><img
     src="新風格.jpg"
 	width="570">
   <div class="container">
   <p>Want some hamburgers?</p>
-  </div>
+  </div></div>
 </div>
 <div class="polaroid">
-<img
+ <div class="column"><img
     src="oraa.jpg"
 	width="570">
   <div class="container">
   <p>Want some hamburgers?</p>
-  </div>
+  </div></div>
 </div>
 
 <br clear="all" />	
