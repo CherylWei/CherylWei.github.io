@@ -7,22 +7,27 @@
   </head>
 <style>
   
-ul {list-style-type: square;}
+ol.d {list-style-type: square;
+}
+ul.a {
+  list-style: none; /* Remove HTML bullets */
+  padding: 0;
+  margin: 0;
+}
 
 li.a { 
   padding-left: 16px; 
 }
+
 li.a::before {
   content: "•"; /* Insert content that looks like bullets */
   padding-right: 8px;
   color: blue; /* Or a color you prefer */
 }
-  
-  
+
 ul.b {
   list-style-image: url('images/marker.png');
 }
-  
   
   
   
@@ -116,26 +121,22 @@ table.table4 tr:nth-child(even) {background-color: #f2f2f2;}
 </head>
 <body>
 
-<ul>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Coca Cola</li>
-</ul>
-  
+<ol class="d">
+  <li>change list style</li>
+  <li>change list style</li>
+  <li>change list style</li>
+</ol>
 <hr/>
-  
-  <ul class="a">
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Coca Cola</li>
-</ul>
-  
-<br/><hr/>
-  
-   <ul class="b">
-  <li class="a">Coffee</li>
-  <li class="a">Tea</li>
-  <li class="a">Coca Cola</li>
+<ul class="a">
+  <li class="a">use custom bullet for list items</li>
+  <li class="a">use custom bullet for list items</li>
+  <li class="a">use custom bullet for list items</li>
+</ul.a>
+<hr/>
+<ul class="b">
+  <li>use an image as bullet for list items</li>
+  <li>use an image as bullet for list items</li>
+  <li>use an image as bullet for list items</li>
 </ul>
   
  <br /> <hr />
