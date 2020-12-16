@@ -40,13 +40,12 @@ table, th, td {
   
   
   
-  
-  #table1 {
+  table.table1 {
   border-collapse: collapse;
   width: 100%;
 }
 
-th, td {
+table.table1 th, td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -55,9 +54,9 @@ th, td {
   
   
   
- #table2 { border-collapse: collapse; }
-tr { border: none; }
-td {
+ table.table2 { border-collapse: collapse; }
+table.table2 tr { border: none; }
+table.table2 td {
   border-right: solid 1px #f00; 
   border-left: solid 1px #f00;
 } 
@@ -65,49 +64,49 @@ td {
   
   
   
-#table3 {
+table.table3 {
   border-collapse: collapse;
   width: 100%;
 }
 
-th, td {
+table.table3 th, td {
   text-align: left;
   padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+table.table3 tr:nth-child(even){background-color: #f2f2f2}
 
-th {
+table.table3 th {
   background-color: #4CAF50;
   color: white;
 }  
   
   
   
-  #table4 {
+table.table4 {
   border-collapse: collapse;
   width: 100%;
 }
 
-th, td {
+table.table4 th, td {
   text-align: left;
   padding: 8px;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
+table.table4 tr:nth-child(even) {background-color: #f2f2f2;}
   
   
-  #table5 {
+  table.table5 {
   border-collapse: collapse;
   width: 100%;
 }
-th, td {
+ table.table5 th, td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
-tr:hover {background-color:#f5f5f5;}
+ table.table5 tr:hover {background-color:#f5f5f5;}
 </style>
   
   
@@ -163,7 +162,7 @@ tr:hover {background-color:#f5f5f5;}
   
   <hr />
   
-  <table id="table1">
+  <table class="table1"> 
   <tr>
     <td>a</td>
     <td>b</td>
@@ -188,7 +187,7 @@ th, td {
 }
   
    <hr />
-     <table id="table2">
+     <table class="table2"> 
   <tr>
     <th>Firstname</th>
     <th>Lastname</th>
@@ -218,7 +217,7 @@ th, td {
   
   <hr />
        
-        <table id="table3">
+ <table class="table3"> 
   <tr>
     <th>Firstname</th>
     <th>Lastname</th>
@@ -238,7 +237,7 @@ th, td {
     
     
    <hr />
-<table id="table4">
+<table class="table4"> 
   <tr>
   <th>First Name</th>
   <th>Last Name</th>
@@ -268,7 +267,7 @@ th, td {
           
    <hr />
           
- <table id="table5">
+<table class="table5"> 
   <tr>
     <th>First Name</th>
     <th>Last Name</th>
