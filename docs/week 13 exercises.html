@@ -1,1 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+ul {
+  list-style: square inside url("sqpurple.gif");
+}
+  
+ ul {
+  list-style: none; /* Remove HTML bullets */
+  padding: 0;
+  margin: 0;
+}
 
+li { 
+  padding-left: 16px; 
+}
+
+li::before {
+  content: "•"; /* Insert content that looks like bullets */
+  padding-right: 8px;
+  color: blue; /* Or a color you prefer */
+}
+  
+  
+ul {
+  list-style-image: url('images/marker.png');
+}
+  
+  
+  
+  
+  
+table, th, td {
+  border: 1px solid black;
+}
+  
+  
+  
+  
+  #table1 {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+  
+  
+  
+ #table2 { border-collapse: collapse; }
+tr { border: none; }
+td {
+  border-right: solid 1px #f00; 
+  border-left: solid 1px #f00;
+} 
+  
+  
+  
+  
+#table3 {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}  
+  
+  
+  
+  #table4 {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+  
+  
+  #table5 {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color:#f5f5f5;}
+</style>
+  
+  
+  
+  
+</head>
+<body>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Coca Cola</li>
+</ul>
+  
+<hr />
+  
+  <ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Coca Cola</li>
+</ul>
+  
+<hr />
+  
+  <ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Coca Cola</li>
+</ul>
+  
+  <hr />
+  
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ <hr />
+  
+  
+  <table>
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+  <tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+  </tr>
+  <tr>
+    <td>Lois</td>
+    <td>Griffin</td>
+  </tr>
+</table>
+  
+  <hr />
+  
+  <table id="table1">
+  <tr>
+    <td>a</td>
+    <td>b</td>
+  </tr>
+  <tr>
+    <td>c</td>
+    <td>d</td>
+  </tr>
+</table>
+  table, td, th {  
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
+  
+   <hr />
+     <table id="table2">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td>Lois</td>
+    <td>Griffin</td>
+    <td>$150</td>
+  </tr>
+  <tr>
+    <td>Joe</td>
+    <td>Swanson</td>
+    <td>$300</td>
+  </tr>
+  <tr>
+    <td>Cleveland</td>
+    <td>Brown</td>
+    <td>$250</td>
+  </tr>
+</table> 
+  
+  <hr />
+       
+        <table id="table3">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+  <tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+  </tr>
+  <tr>
+    <td>Lois</td>
+    <td>Griffin</td>
+  </tr>
+  <tr>
+    <td>Joe</td>
+    <td>Swanson</td>
+  </tr>
+    
+    
+   <hr />
+<table id="table4">
+  <tr>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th>Points</th>
+  </tr>
+  <tr>
+  <td>Peter</td>
+  <td>Griffin</td>
+  <td>$100</td>
+  </tr>
+  <tr>
+  <td>Lois</td>
+  <td>Griffin</td>
+  <td>$150</td>
+  </tr>
+  <tr>
+  <td>Joe</td>
+  <td>Swanson</td>
+  <td>$300</td>
+  </tr>
+  <tr>
+  <td>Cleveland</td>
+  <td>Brown</td>
+  <td>$250</td>
+  </tr>
+</table>
+          
+   <hr />
+          
+ <table id="table5">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Points</th>
+  </tr>
+  <tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td>Lois</td>
+    <td>Griffin</td>
+    <td>$150</td>
+  </tr>
+  <tr>
+    <td>Joe</td>
+    <td>Swanson</td>
+    <td>$300</td>
+  </tr>
+  <tr>
+    <td>Cleveland</td>
+    <td>Brown</td>
+    <td>$250</td>
+  </tr>
+</table>
+    
+    
+     <hr />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>
