@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>W3.CSS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
@@ -9,16 +8,14 @@ ul {
   list-style: square inside url("sqpurple.gif");
 }
   
- ul {
+ul.a {
   list-style: none; /* Remove HTML bullets */
   padding: 0;
   margin: 0;
 }
-
 li { 
   padding-left: 16px; 
 }
-
 li::before {
   content: "•"; /* Insert content that looks like bullets */
   padding-right: 8px;
@@ -26,7 +23,7 @@ li::before {
 }
   
   
-ul {
+ul.b {
   list-style-image: url('images/marker.png');
 }
   
@@ -112,6 +109,14 @@ table.table4 tr:nth-child(even) {background-color: #f2f2f2;}
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
 </head>
 <body>
 
@@ -123,7 +128,7 @@ table.table4 tr:nth-child(even) {background-color: #f2f2f2;}
   
 <hr/>
   
-  <ul>
+  <ul class="a">
   <li>Coffee</li>
   <li>Tea</li>
   <li>Coca Cola</li>
@@ -131,7 +136,7 @@ table.table4 tr:nth-child(even) {background-color: #f2f2f2;}
   
 <br/><hr/>
   
-  <ul>
+   <ul class="b">
   <li>Coffee</li>
   <li>Tea</li>
   <li>Coca Cola</li>
