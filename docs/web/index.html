@@ -75,6 +75,11 @@
       background-color: rgb(0,0,0);
       background-color: rgba(0,0,0,0.4);
     }
+
+    #bouncingBallCanvas {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid black;
     
   </style>
 </head>
@@ -105,15 +110,15 @@
   <span class="w3-button w3-top w3-white w3-xxlarge w3-text-grey w3-hover-text-black" style="width:auto;right:0;" onclick="openNav()"><i class="fa fa-bars"></i></span>
 
   <!-- Header -->
-  <header class="w3-container w3-center" style="padding:128px 16px" id="home">
+<header class="w3-container w3-center" style="padding:128px 16px" id="home">
     <h1 class="w3-jumbo"><b>Tsai-Wei Lin</b></h1>
     <p>Cheryl's Programming Journey.</p>
     <p>All python code is developed in adherence to the <a href="https://communitystandards.stanford.edu/policies-guidance/honor-code" target="_blank">Stanford Honor Code</a>.</p>
-</p>
     <button class="w3-button w3-light-grey w3-padding-large w3-margin-top">
       <i class="fa fa-download"></i> Download Resume
     </button>
-  </header>
+    <canvas id="bouncingBallCanvas" width="800" height="150"></canvas>
+</header>
   
   <!-- Portfolio Section -->
   <div class="w3-padding-32 w3-content" id="portfolio">
@@ -352,6 +357,94 @@
 </div>
 
 <script>
+      const canvas = document.getElementById('bouncingBallCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Constants for the bouncing ball
+    const VX = 3;
+    const DELAY = 10; // in milliseconds
+    const GRAVITY = 1;
+    const SIZE = 20;
+    const REDUCE = 0.9;
+    const START_X = 30;
+    const START_Y = 40;
+
+    // Initial position and velocity
+    let x = START_X;
+    let y = START_Y;
+    let vy = 0;
+    let inBouncing = false;
+
+    // Dot positions for "i"s in "Tsai-Wei Lin"
+    const dotPositions = [
+        {x: 60, y: 90},  // Position of first "i"
+        {x: 190, y: 90}, // Position of second "i"
+        {x: 390, y: 90}  // Position of third "i"
+    ];
+    let currentDotIndex = 0;
+
+    // Event listener for mouse click to trigger animation
+    document.getElementById('home').addEventListener('click', () => {
+        if (!inBouncing) {
+            inBouncing = true;
+            startBouncing();
+        }
+    });
+
+    function startBouncing() {
+        vy = 0;
+        x = START_X;
+        y = START_Y;
+        currentDotIndex = 0;
+
+        function animate() {
+            if (!inBouncing) return;
+
+            vy += GRAVITY;
+            x += VX;
+            y += vy;
+
+            // Boundary collision
+            if (y >= canvas.height - SIZE / 2) {
+                y = canvas.height - SIZE / 2;
+                vy = -vy * REDUCE;
+            }
+
+            // If reaches the intended dot position
+            if (currentDotIndex < dotPositions.length &&
+                Math.abs(x - dotPositions[currentDotIndex].x) < VX &&
+                Math.abs(y - dotPositions[currentDotIndex].y) < 5) {
+                x = dotPositions[currentDotIndex].x;
+                y = dotPositions[currentDotIndex].y;
+                currentDotIndex++;
+                vy = 0;  // Reset velocity for next bounce
+            }
+
+            // If finished bouncing on the dots
+            if (currentDotIndex >= dotPositions.length) {
+                inBouncing = false;
+                resetBall();
+                return;
+            }
+
+            // Clear canvas and redraw ball
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.arc(x, y, SIZE / 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            setTimeout(animate, DELAY);
+        }
+
+        animate();
+    }
+
+    function resetBall() {
+        x = START_X;
+        y = START_Y;
+        vy = 0;
+    }
+  
   function openNav() {
     document.getElementById("mySidebar").style.width = "60%";
     document.getElementById("mySidebar").style.display = "block";
