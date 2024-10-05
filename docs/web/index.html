@@ -139,7 +139,7 @@
           <img src="path/to/image-1.jpg" style="width:100%">
         </li>
         <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-white w3-padding-large w3-hover-black">Demo</button>
+          <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal1').style.display='block'">Details</button>
           <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
         </li>
       </ul>
@@ -154,7 +154,6 @@
         </li>
         <li class="w3-light-grey w3-padding-24">
           <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal1').style.display='block'">Details</button>
-          <button class="w3-button w3-white w3-padding-large w3-hover-black">Demo</button>
           <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
         </li>
       </ul>
@@ -169,7 +168,6 @@
         </li>
         <li class="w3-light-grey w3-padding-24">
           <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal1').style.display='block'">Details</button>
-          <button class="w3-button w3-white w3-padding-large w3-hover-black">Demo</button>
           <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
         </li>
       </ul>
@@ -184,7 +182,6 @@
         </li>
         <li class="w3-light-grey w3-padding-24">
           <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal1').style.display='block'">Details</button>
-          <button class="w3-button w3-white w3-padding-large w3-hover-black">Demo</button>
           <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
         </li>
       </ul>
@@ -198,7 +195,7 @@
           <img src="path/to/image-5.jpg" style="width:100%">
         </li>
         <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-white w3-padding-large w3-hover-black">Demo</button>
+          <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal1').style.display='block'">Details</button>
           <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
         </li>
       </ul>
@@ -212,7 +209,7 @@
           <img src="path/to/image-6.jpg" style="width:100%">
         </li>
         <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-white w3-padding-large w3-hover-black">Demo</button>
+          <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal1').style.display='block'">Details</button>
           <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
         </li>
       </ul>
@@ -220,6 +217,38 @@
     <!-- End Portfolio Grid -->
   </div>
 
+  <!-- Modal for Project 1 -->
+  <div id="modal1" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <span onclick="document.getElementById('modal1').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+      <h2>Project 1 Details</h2>
+      <p>Write your description for Project 1 here.</p>
+    </div>
+  </div>
+
+  <!-- Modal for Project 2 -->
+  <div id="modal2" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <span onclick="document.getElementById('modal2').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+      <h2>Project 2 Details</h2>
+      <p>Write your description for Project 2 here.</p>
+    </div>
+  </div>
+
+  <!-- Modal for Project 3 -->
+  <div id="modal3" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <span onclick="document.getElementById('modal3').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+      <h2>Project 3 Details</h2>
+      <p>Write your description for Project 3 here.</p>
+    </div>
+  </div>
+
+    
+    
 <!-- About Section -->
 <div class="w3-content w3-justify w3-text-grey w3-padding-32" id="about">
   <h2>About</h2>
