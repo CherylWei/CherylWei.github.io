@@ -302,8 +302,9 @@
     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing
     elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   </p>
+  
   <h3 class="w3-padding-16">My Core Skills</h3>
-  <div class="w3-row w3-center w3-dark-grey w3-padding-16 w3-section">
+  <div class="w3-row w3-center w3-dark-grey w3-padding-16 w3-section" id="coreSkills">
     <div class="w3-quarter w3-section">
       <span class="w3-xlarge">Python</span><br>
       100k+ lines of code
@@ -317,8 +318,8 @@
       First learned languages
     </div>
     <div class="w3-quarter w3-section">
-      <span class="w3-xlarge">MatLab</span><br>
-      Currently learning
+      <span class="w3-xlarge">SQL</span><br>
+      DataBase
     </div>
   </div>
 <!-- End About Section -->
@@ -387,7 +388,32 @@
 
   // Initialize to show all work
   document.addEventListener('DOMContentLoaded', () => filterSelection('all'));
-</script>
 
+// Function to check if an element is in viewport
+  function isElementInViewport(el) {
+    var rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  // Function to add animation class to skills section
+  function animateSkills() {
+    var skillsSection = document.getElementById('coreSkills');
+    if (isElementInViewport(skillsSection)) {
+      skillsSection.classList.add('w3-animate-left');
+      window.removeEventListener('scroll', animateSkills);
+    }
+  }
+
+  // Add scroll event listener
+  window.addEventListener('scroll', animateSkills);
+
+  // Initial check if the skills section is already in view
+  animateSkills();
+</script>
 </body>
 </html>
