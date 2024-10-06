@@ -79,7 +79,7 @@
     #bouncingBallCanvas {
     display: block;
     margin: 0 auto;
-
+    }
     
   </style>
 </head>
@@ -112,7 +112,6 @@
   <!-- Header -->
 <header class="w3-container w3-center" style="padding:128px 16px" id="home">
     <canvas id="bouncingBallCanvas" width="800" height="150"></canvas>
-    <h1 class="w3-jumbo"><b>Tsa𝖨-Wei Lin</b></h1>
     <p>Cheryl's Programming Journey.</p>
     <p>All python code is developed in adherence to the <a href="https://communitystandards.stanford.edu/policies-guidance/honor-code" target="_blank">Stanford Honor Code</a>.</p>
     <button class="w3-button w3-light-grey w3-padding-large w3-margin-top">
@@ -375,29 +374,56 @@
     let vy = 0;
     let inBouncing = true;
     
-    // Function to draw the text and return dot positions
+    // Function to adjust canvas scale for better text rendering
+    function adjustCanvasScale() {
+      const scale = window.devicePixelRatio; // Get the device pixel ratio
+      const width = canvas.width;
+      const height = canvas.height;
+
+      // Adjust the canvas width and height based on the scale
+      canvas.width = width * scale;
+      canvas.height = height * scale;
+
+      // Scale down the context to match the canvas size
+      ctx.scale(scale, scale);
+
+      // Reset canvas dimensions in CSS to maintain initial size
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+    }
+
+    adjustCanvasScale(); // Apply scaling adjustments
+
+    // Function to draw text and get dot positions
     function drawTextAndGetDotPositions() {
       const text = "Tsai-Wei Lin";
-      ctx.font = "30px Montserrat";
+      const fontSize = 64; // Adjust to match the original header size
+      
+      ctx.font = `${fontSize}px Montserrat`;
       ctx.textAlign = "center";
+      const textX = canvas.width / 2 / window.devicePixelRatio; // Adjust based on scaling
+      const textY = canvas.height - 20 / window.devicePixelRatio; // Adjust based on scaling
+
+      // Measure text width
       const textWidth = ctx.measureText(text).width;
-      const textX = canvas.width / 2;
-      const textY = canvas.height - 20; // Position text near the bottom, adjust as needed
+      const letterSpacing = textWidth / text.length;
+
+      // Draw text
       ctx.fillText(text, textX, textY);
 
-      const letterSpacing = textWidth / text.length;
+      // Calculate dot positions
       const dots = [];
       for (let i = 0; i < text.length; i++) {
         if (text[i] === "i") {
           const dotX = textX - textWidth / 2 + i * letterSpacing + letterSpacing / 2;
-          const dotY = textY - 25; // Adjust to be above the text character
+          const dotY = textY - fontSize / 2; // Adjust to be above the text character
           dots.push({ x: dotX, y: dotY });
         }
       }
       return dots;
     }
 
-    // Draw the text and get the dot positions
+    // Draw text and get dot positions
     const dotPositions = drawTextAndGetDotPositions();
     let currentDotIndex = 0;
 
@@ -418,8 +444,8 @@
         y += vy;
 
         // Boundary collision
-        if (y >= canvas.height - SIZE / 2) {
-          y = canvas.height - SIZE / 2;
+        if (y >= canvas.height / window.devicePixelRatio - SIZE / 2) {
+          y = canvas.height / window.devicePixelRatio - SIZE / 2;
           vy = -vy * REDUCE; // Ball bounces up
 
           // Make the ball stick to the floor at the specified positions
@@ -457,7 +483,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', startBouncing); // Start animation on page load
-
 
   
   function openNav() {
