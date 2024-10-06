@@ -356,17 +356,16 @@
 <!-- END PAGE CONTENT -->
 </div>
 
-  
-<script>
+  <script>
     const canvas = document.getElementById('bouncingBallCanvas');
     const ctx = canvas.getContext('2d');
 
     // Constants for the bouncing ball
     const VX = 3;
-    const DELAY = 10; // in milliseconds
-    const GRAVITY = 1;
+    const DELAY = 15; // in milliseconds
+    const GRAVITY = 0.8;
     const SIZE = 20;
-    const REDUCE = 0.9;
+    const REDUCE = 0.75;
     const START_X = 30;
     const START_Y = 40;
 
@@ -375,71 +374,90 @@
     let y = START_Y;
     let vy = 0;
     let inBouncing = true;
+    
+    // Function to draw the text and return dot positions
+    function drawTextAndGetDotPositions() {
+      const text = "Tsai-Wei Lin";
+      ctx.font = "30px Montserrat";
+      ctx.textAlign = "center";
+      const textWidth = ctx.measureText(text).width;
+      const textX = canvas.width / 2;
+      const textY = canvas.height - 20; // Position text near the bottom, adjust as needed
+      ctx.fillText(text, textX, textY);
 
-    // Dot positions for "i"s in "Tsai-Wei Lin"
-    const dotPositions = [
-        {x: 90, y: 90},   // Position of first "i" in "Tsai"
-        {x: 290, y: 90},  // Position of "i" in "Wei"
-        {x: 490, y: 90}   // Position of "i" in "Lin"
-    ];
+      const letterSpacing = textWidth / text.length;
+      const dots = [];
+      for (let i = 0; i < text.length; i++) {
+        if (text[i] === "i") {
+          const dotX = textX - textWidth / 2 + i * letterSpacing + letterSpacing / 2;
+          const dotY = textY - 25; // Adjust to be above the text character
+          dots.push({ x: dotX, y: dotY });
+        }
+      }
+      return dots;
+    }
+
+    // Draw the text and get the dot positions
+    const dotPositions = drawTextAndGetDotPositions();
     let currentDotIndex = 0;
 
     // Array to hold the positions of the stationary balls (silhouettes)
     const silhouetteBalls = [];
 
     function startBouncing() {
-        vy = 0;
-        x = START_X;
-        y = START_Y;
-        currentDotIndex = 0;
+      vy = 0;
+      x = START_X;
+      y = START_Y;
+      currentDotIndex = 0;
 
-        function animate() {
-            if (!inBouncing) return;
+      function animate() {
+        if (!inBouncing) return;
 
-            vy += GRAVITY;
-            x += VX;
-            y += vy;
+        vy += GRAVITY;
+        x += VX;
+        y += vy;
 
-            // Boundary collision
-            if (y >= canvas.height - SIZE / 2) {
-                y = canvas.height - SIZE / 2;
-                vy = -vy * REDUCE; // Ball bounces up
+        // Boundary collision
+        if (y >= canvas.height - SIZE / 2) {
+          y = canvas.height - SIZE / 2;
+          vy = -vy * REDUCE; // Ball bounces up
 
-                // Make the ball stick to the floor at the specified positions
-                if (currentDotIndex < dotPositions.length) {
-                    if (Math.abs(x - dotPositions[currentDotIndex].x) < VX &&
-                        y === canvas.height - SIZE / 2) {
-                        silhouetteBalls.push({...dotPositions[currentDotIndex]});
-                        currentDotIndex++;
-                    }
-                } else {
-                    inBouncing = false;
-                    return;
-                }
+          // Make the ball stick to the floor at the specified positions
+          if (currentDotIndex < dotPositions.length) {
+            if (Math.abs(x - dotPositions[currentDotIndex].x) < VX) {
+              silhouetteBalls.push({ ...dotPositions[currentDotIndex] });
+              currentDotIndex++;
             }
-
-            // Clear canvas and redraw balls
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Draw silhouette balls
-            silhouetteBalls.forEach(ball => {
-                ctx.beginPath();
-                ctx.arc(ball.x, ball.y, SIZE / 2, 0, Math.PI * 2);
-                ctx.fill();
-            });
-
-            // Draw bouncing ball
-            ctx.beginPath();
-            ctx.arc(x, y, SIZE / 2, 0, Math.PI * 2);
-            ctx.fill();
-
-            setTimeout(animate, DELAY);
+          } else {
+            inBouncing = false;
+            return;
+          }
         }
 
-        animate();
+        // Clear canvas and redraw text and balls
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawTextAndGetDotPositions(); // Re-draw the text
+
+        // Draw silhouette balls
+        silhouetteBalls.forEach(ball => {
+          ctx.beginPath();
+          ctx.arc(ball.x, ball.y, SIZE / 2, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        // Draw bouncing ball
+        ctx.beginPath();
+        ctx.arc(x, y, SIZE / 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        setTimeout(animate, DELAY);
+      }
+
+      animate();
     }
 
-    document.addEventListener('DOMContentLoaded', startBouncing);
+    document.addEventListener('DOMContentLoaded', startBouncing); // Start animation on page load
+
 
   
   function openNav() {
