@@ -393,29 +393,29 @@
 
     adjustCanvasScale();
 
-    function drawText() {
-        const characters = [
-            { char: 'T', x: 22, y: 140 },
-            { char: 'S', x: 62, y: 140 },
-            { char: 'A', x: 102, y: 140 },
-            { char: 'I', x: 152.65, y: 140, color: '#E2725A', name: 'firstI' },
-            { char: 'W', x: 193, y: 140 },
-            { char: 'E', x: 265, y: 140 },
-            { char: 'I', x: 309.5, y: 140 , color: '#E2725A', name: 'secondI' },
-            { char: 'L', x: 370, y: 140 },
-            { char: 'I', x: 415, y: 140 , color: '#E2725A', name: 'thirdI' },
-            { char: 'N', x: 435, y: 140 }
-        ];
+    const characters = [
+    { char: 'T', x: 22, y: 140 , color: '#4A6274'},
+    { char: 'S', x: 62, y: 140 , color: '#4A6274'},
+    { char: 'A', x: 102, y: 140 , color: '#4A6274'},
+    { char: 'I', x: 152.65, y: 140, color: '#4A6274', name: 'firstI' },
+    { char: 'W', x: 193, y: 140 , color: '#4A6274'},
+    { char: 'E', x: 265, y: 140 , color: '#4A6274'},
+    { char: 'I', x: 309.5, y: 140 , color: '#4A6274', name: 'secondI' },
+    { char: 'L', x: 370, y: 140 , color: '#4A6274'},
+    { char: 'I', x: 415, y: 140 , color: '#4A6274', name: 'thirdI' },
+    { char: 'N', x: 435, y: 140 , color: '#4A6274'}
+];
 
+    function drawText() {
         ctx.font = `64px Montserrat`;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "black"; // Set text color to black
         
         characters.forEach(item => {
+            ctx.fillStyle = item.color;
             ctx.fillText(item.char, item.x, item.y);
         });
     }
+
 
     function startBouncing() {
         vy = 0;
@@ -427,7 +427,7 @@
           const oldFillStyle = ctx.fillStyle;  // Store the current fill style
           ctx.beginPath();
           ctx.arc(x, y, SIZE, 0, Math.PI * 2);
-          ctx.fillStyle = "#4A6274";
+          ctx.fillStyle = "#E2725A";
           ctx.fill();
           ctx.closePath();
           ctx.fillStyle = oldFillStyle; // Restore the fill style
@@ -446,15 +446,13 @@
                 vy = -vy * REDUCE; // Reverse velocity with reduction
                 bounce_count++;
 
-                // if (bounce_count == 2) {
-                //   characters.find(char => char.name === 'firstI').color = 'red';
-                // } else if (bounce_count == 4) {
-                //   characters.find(char => char.name === 'secondI').color = 'red';
-                // } else if (bounce_count == 6) {
-                //   characters.find(char => char.name === 'thirdI').color = 'red';
-                // }
-                //   else {
-                // }
+                if (bounce_count == 2) {
+                  characters.find(char => char.name === 'firstI').color = '#E2725A';
+              } else if (bounce_count == 4) {
+                  characters.find(char => char.name === 'secondI').color = '#E2725A';
+              } else if (bounce_count == 6) {
+                  characters.find(char => char.name === 'thirdI').color = '#E2725A';
+              }
 
                 if (bounce_count == 2 || bounce_count == 4 || bounce_count == 6) {
                       redBallPositions.push({ x: x, y: y });
@@ -468,7 +466,6 @@
           redBallPositions.forEach(position => {
               drawRedBall(position.x, position.y);
           });
-
 
             // Draw bouncing ball
             ctx.beginPath();
