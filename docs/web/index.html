@@ -356,8 +356,9 @@
 <!-- END PAGE CONTENT -->
 </div>
 
-<script>
-      const canvas = document.getElementById('bouncingBallCanvas');
+  
+  <script>
+    const canvas = document.getElementById('bouncingBallCanvas');
     const ctx = canvas.getContext('2d');
 
     // Constants for the bouncing ball
@@ -373,7 +374,7 @@
     let x = START_X;
     let y = START_Y;
     let vy = 0;
-    let inBouncing = false;
+    let inBouncing = true;
 
     // Dot positions for "i"s in "Tsai-Wei Lin"
     const dotPositions = [
@@ -382,14 +383,6 @@
         {x: 390, y: 90}  // Position of third "i"
     ];
     let currentDotIndex = 0;
-
-    // Event listener for mouse click to trigger animation
-    document.getElementById('home').addEventListener('click', () => {
-        if (!inBouncing) {
-            inBouncing = true;
-            startBouncing();
-        }
-    });
 
     function startBouncing() {
         vy = 0;
@@ -407,24 +400,19 @@
             // Boundary collision
             if (y >= canvas.height - SIZE / 2) {
                 y = canvas.height - SIZE / 2;
-                vy = -vy * REDUCE;
-            }
+                vy = 0; // Ball stops moving vertically when it hits the floor
 
-            // If reaches the intended dot position
-            if (currentDotIndex < dotPositions.length &&
-                Math.abs(x - dotPositions[currentDotIndex].x) < VX &&
-                Math.abs(y - dotPositions[currentDotIndex].y) < 5) {
-                x = dotPositions[currentDotIndex].x;
-                y = dotPositions[currentDotIndex].y;
-                currentDotIndex++;
-                vy = 0;  // Reset velocity for next bounce
-            }
-
-            // If finished bouncing on the dots
-            if (currentDotIndex >= dotPositions.length) {
-                inBouncing = false;
-                resetBall();
-                return;
+                // Make the ball stick to the floor at the specified positions
+                if (currentDotIndex < dotPositions.length) {
+                    dotPositions[currentDotIndex].y = canvas.height - SIZE / 2;
+                    if (Math.abs(x - dotPositions[currentDotIndex].x) < VX) {
+                        x = dotPositions[currentDotIndex].x;
+                        currentDotIndex++;
+                    }
+                } else {
+                    inBouncing = false;
+                    return;
+                }
             }
 
             // Clear canvas and redraw ball
@@ -439,11 +427,8 @@
         animate();
     }
 
-    function resetBall() {
-        x = START_X;
-        y = START_Y;
-        vy = 0;
-    }
+    document.addEventListener('DOMContentLoaded', startBouncing);
+  
   
   function openNav() {
     document.getElementById("mySidebar").style.width = "60%";
