@@ -357,7 +357,7 @@
 </div>
 
   
-  <script>
+<script>
     const canvas = document.getElementById('bouncingBallCanvas');
     const ctx = canvas.getContext('2d');
 
@@ -378,11 +378,14 @@
 
     // Dot positions for "i"s in "Tsai-Wei Lin"
     const dotPositions = [
-        {x: 90, y: 90},  // Position of first "i"
-        {x: 290, y: 90}, // Position of second "i"
-        {x: 490, y: 90}  // Position of third "i"
+        {x: 90, y: 90},   // Position of first "i" in "Tsai"
+        {x: 290, y: 90},  // Position of "i" in "Wei"
+        {x: 490, y: 90}   // Position of "i" in "Lin"
     ];
     let currentDotIndex = 0;
+
+    // Array to hold the positions of the stationary balls (silhouettes)
+    const silhouetteBalls = [];
 
     function startBouncing() {
         vy = 0;
@@ -400,13 +403,13 @@
             // Boundary collision
             if (y >= canvas.height - SIZE / 2) {
                 y = canvas.height - SIZE / 2;
-                vy = 0; // Ball stops moving vertically when it hits the floor
+                vy = -vy * REDUCE; // Ball bounces up
 
                 // Make the ball stick to the floor at the specified positions
                 if (currentDotIndex < dotPositions.length) {
-                    dotPositions[currentDotIndex].y = canvas.height - SIZE / 2;
-                    if (Math.abs(x - dotPositions[currentDotIndex].x) < VX) {
-                        x = dotPositions[currentDotIndex].x;
+                    if (Math.abs(x - dotPositions[currentDotIndex].x) < VX &&
+                        y === canvas.height - SIZE / 2) {
+                        silhouetteBalls.push({...dotPositions[currentDotIndex]});
                         currentDotIndex++;
                     }
                 } else {
@@ -415,8 +418,17 @@
                 }
             }
 
-            // Clear canvas and redraw ball
+            // Clear canvas and redraw balls
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw silhouette balls
+            silhouetteBalls.forEach(ball => {
+                ctx.beginPath();
+                ctx.arc(ball.x, ball.y, SIZE / 2, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Draw bouncing ball
             ctx.beginPath();
             ctx.arc(x, y, SIZE / 2, 0, Math.PI * 2);
             ctx.fill();
@@ -428,7 +440,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', startBouncing);
-  
+
   
   function openNav() {
     document.getElementById("mySidebar").style.width = "60%";
