@@ -401,8 +401,9 @@
       
       ctx.font = `${fontSize}px Montserrat`;
       ctx.textAlign = "center";
-      const textX = canvas.width / 2 / window.devicePixelRatio; // Adjust based on scaling
-      const textY = canvas.height - 20 / window.devicePixelRatio; // Adjust based on scaling
+      ctx.textBaseline = "top";
+      const textX = canvas.width / (2 * window.devicePixelRatio); // Adjust based on scaling
+      const textY = 20; // Adjust based on scaling
 
       // Measure text width
       const textWidth = ctx.measureText(text).width;
@@ -416,7 +417,7 @@
       for (let i = 0; i < text.length; i++) {
         if (text[i] === "i") {
           const dotX = textX - textWidth / 2 + i * letterSpacing + letterSpacing / 2;
-          const dotY = textY - fontSize / 2; // Adjust to be above the text character
+          const dotY = textY + fontSize * 0.3; // Adjust to be above the text character
           dots.push({ x: dotX, y: dotY });
         }
       }
@@ -435,6 +436,9 @@
       x = START_X;
       y = START_Y;
       currentDotIndex = 0;
+
+      // Draw the text once outside of the animation loop
+      drawTextAndGetDotPositions();
 
       function animate() {
         if (!inBouncing) return;
@@ -460,9 +464,9 @@
           }
         }
 
-        // Clear canvas and redraw text and balls
+        // Clear canvas and redraw balls
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawTextAndGetDotPositions(); // Re-draw the text
+        drawTextAndGetDotPositions(); // Re-draw the text to persist it
 
         // Draw silhouette balls
         silhouetteBalls.forEach(ball => {
