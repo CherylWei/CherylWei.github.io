@@ -111,7 +111,7 @@
 
   <!-- Header -->
 <header class="w3-container w3-center" style="padding:128px 16px" id="home">
-    <canvas id="bouncingBallCanvas" width="800" height="150"></canvas>
+    <canvas id="bouncingBallCanvas" width="500" height="150"></canvas>
     <p>Cheryl's Programming Journey.</p>
     <p>All python code is developed in adherence to the <a href="https://communitystandards.stanford.edu/policies-guidance/honor-code" target="_blank">Stanford Honor Code</a>.</p>
     <button class="w3-button w3-light-grey w3-padding-large w3-margin-top">
@@ -355,138 +355,137 @@
 <!-- END PAGE CONTENT -->
 </div>
 
-  <script>
+<script>
     const canvas = document.getElementById('bouncingBallCanvas');
     const ctx = canvas.getContext('2d');
 
     // Constants for the bouncing ball
-    const VX = 5;
-    const DELAY = 15; // in milliseconds
-    const GRAVITY = 0.8;
-    const SIZE = 20;
-    const REDUCE = 0.75;
-    const START_X = 30;
-    const START_Y = 40;
+    const VX = 4.235;
+    const DELAY = 10; 
+    const GRAVITY = 1;
+    const SIZE = 6;
+    const REDUCE = 0.9;
+    const START_X = 10;
+    const START_Y = 0;
 
     // Initial position and velocity
     let x = START_X;
     let y = START_Y;
     let vy = 0;
     let inBouncing = true;
+    let bounce_count = 0;
+    let redBallPositions = [];
     
-    // Function to adjust canvas scale for better text rendering
+    // Function to adjust canvas scale
     function adjustCanvasScale() {
-      const scale = window.devicePixelRatio; // Get the device pixel ratio
-      const width = canvas.width;
-      const height = canvas.height;
+        const scale = window.devicePixelRatio;
+        const width = canvas.width;
+        const height = canvas.height;
 
-      // Adjust the canvas width and height based on the scale
-      canvas.width = width * scale;
-      canvas.height = height * scale;
+        canvas.width = width * scale;
+        canvas.height = height * scale;
 
-      // Scale down the context to match the canvas size
-      ctx.scale(scale, scale);
+        ctx.scale(scale, scale);
 
-      // Reset canvas dimensions in CSS to maintain initial size
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
     }
 
-    adjustCanvasScale(); // Apply scaling adjustments
+    adjustCanvasScale();
 
-    // Function to draw text and get dot positions
-    function drawTextAndGetDotPositions() {
-      const text = "Tsai-Wei Lin";
-      const fontSize = 64; // Adjust to match the original header size
-      
-      ctx.font = `${fontSize}px Montserrat`;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "top";
-      const textX = canvas.width / (2 * window.devicePixelRatio); // Adjust based on scaling
-      const textY = 20; // Adjust based on scaling
+    function drawText() {
+        const characters = [
+            { char: 'T', x: 22, y: 140 },
+            { char: 'S', x: 62, y: 140 },
+            { char: 'A', x: 102, y: 140 },
+            { char: 'I', x: 152.65, y: 140, color: 'black', name: 'firstI' },
+            { char: 'W', x: 193, y: 140 },
+            { char: 'E', x: 265, y: 140 },
+            { char: 'I', x: 309.5, y: 140 , color: 'black', name: 'secondI' },
+            { char: 'L', x: 370, y: 140 },
+            { char: 'I', x: 415, y: 140 , color: 'black', name: 'thirdI' },
+            { char: 'N', x: 435, y: 140 }
+        ];
 
-      // Measure text width
-      const textWidth = ctx.measureText(text).width;
-      const letterSpacing = textWidth / text.length;
+        ctx.font = `64px Montserrat`;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw text
-      ctx.fillText(text, textX, textY);
-
-      // Calculate dot positions
-      const dots = [];
-      for (let i = 0; i < text.length; i++) {
-        if (text[i] === "i") {
-          const dotX = textX - textWidth / 2 + i * letterSpacing + letterSpacing / 2;
-          const dotY = textY + fontSize * 0.3; // Adjust to be above the text character
-          dots.push({ x: dotX, y: dotY });
-        }
-      }
-      return dots;
+        ctx.fillStyle = "black"; // Set text color to black
+        
+        characters.forEach(item => {
+            ctx.fillText(item.char, item.x, item.y);
+        });
     }
-
-    // Draw text and get dot positions
-    const dotPositions = drawTextAndGetDotPositions();
-    let currentDotIndex = 0;
-
-    // Array to hold the positions of the stationary balls (silhouettes)
-    const silhouetteBalls = [];
 
     function startBouncing() {
-      vy = 0;
-      x = START_X;
-      y = START_Y;
-      currentDotIndex = 0;
+        vy = 0;
+        x = START_X;
+        y = START_Y;
+        bounce_count=0
 
-      // Draw the text once outside of the animation loop
-      drawTextAndGetDotPositions();
-
-      function animate() {
-        if (!inBouncing) return;
-
-        vy += GRAVITY;
-        x += VX;
-        y += vy;
-
-        // Boundary collision
-        if (y >= canvas.height / window.devicePixelRatio - SIZE / 2) {
-          y = canvas.height / window.devicePixelRatio - SIZE / 2;
-          vy = -vy * REDUCE; // Ball bounces up
-
-          // Make the ball stick to the floor at the specified positions
-          if (currentDotIndex < dotPositions.length) {
-            if (Math.abs(x - dotPositions[currentDotIndex].x) < VX) {
-              silhouetteBalls.push({ ...dotPositions[currentDotIndex] });
-              currentDotIndex++;
-            }
-          } else {
-            inBouncing = false;
-            return;
-          }
+        function drawRedBall(x, y) {
+          const oldFillStyle = ctx.fillStyle;  // Store the current fill style
+          ctx.beginPath();
+          ctx.arc(x, y, SIZE, 0, Math.PI * 2);
+          ctx.fillStyle = "red";
+          ctx.fill();
+          ctx.closePath();
+          ctx.fillStyle = oldFillStyle; // Restore the fill style
         }
 
-        // Clear canvas and redraw balls
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawTextAndGetDotPositions(); // Re-draw the text to persist it
+        function animate() {
+            if (!inBouncing) return; // Stop the animation if inBouncing is false
 
-        // Draw silhouette balls
-        silhouetteBalls.forEach(ball => {
-          ctx.beginPath();
-          ctx.arc(ball.x, ball.y, SIZE / 2, 0, Math.PI * 2);
-          ctx.fill();
-        });
+            vy += GRAVITY;
+            x += VX;
+            y += vy;
 
-        // Draw bouncing ball
-        ctx.beginPath();
-        ctx.arc(x, y, SIZE / 2, 0, Math.PI * 2);
-        ctx.fill();
+            // Check for bottom collision
+            if (y >= canvas.height / window.devicePixelRatio / 2 + 10) {
+                y = canvas.height / window.devicePixelRatio / 2 + 10;
+                vy = -vy * REDUCE; // Reverse velocity with reduction
+                bounce_count++;
 
-        setTimeout(animate, DELAY);
-      }
+                // if (bounce_count == 2) {
+                //   characters.find(char => char.name === 'firstI').color = 'red';
+                // } else if (bounce_count == 4) {
+                //   characters.find(char => char.name === 'secondI').color = 'red';
+                // } else if (bounce_count == 6) {
+                //   characters.find(char => char.name === 'thirdI').color = 'red';
+                // }
+                //   else {
+                // }
 
-      animate();
+                if (bounce_count == 2 || bounce_count == 4 || bounce_count == 6) {
+                      redBallPositions.push({ x: x, y: y });
+                  }
+              }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawText(); // Draw the text again
+
+            // Draw the red balls
+          redBallPositions.forEach(position => {
+              drawRedBall(position.x, position.y);
+          });
+
+
+            // Draw bouncing ball
+            ctx.beginPath();
+            ctx.arc(x, y, SIZE, 0, Math.PI * 2);
+            ctx.fillStyle = "black";
+            ctx.fill();
+            ctx.closePath();
+
+
+            // Continue the animation
+            setTimeout(animate, DELAY);
+        }
+
+        animate();
     }
 
-    document.addEventListener('DOMContentLoaded', startBouncing); // Start animation on page load
+    document.addEventListener('DOMContentLoaded', startBouncing);
 
   
   function openNav() {
