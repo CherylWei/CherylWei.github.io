@@ -403,20 +403,19 @@
     { char: 'W', x: 193, y: 140 , color: '#4A6274'},
     { char: 'E', x: 265, y: 140 , color: '#4A6274'},
     { char: 'I', x: 309.5, y: 140 , color: '#4A6274', name: 'secondI' },
-
-    {
-      char: 'image',
-      src: '../images/logo_website.png',
-      width: 30,
-      height: 30,
-      x: 320,
-      y: 140
-    },
     { char: 'L', x: 370, y: 140 , color: '#4A6274'},
     { char: 'I', x: 415, y: 140 , color: '#4A6274', name: 'thirdI' },
     { char: 'N', x: 435, y: 140 , color: '#4A6274'}
 ];
 
+  const imageData = {
+      src: '../images/logo_website.png',
+      width: 30,
+      height: 30,
+      x: 320,
+      y: 140
+    };
+  
     function drawText() {
         ctx.font = `64px Montserrat`;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -425,6 +424,11 @@
             ctx.fillStyle = item.color;
             ctx.fillText(item.char, item.x, item.y);
         });
+      const img = new Image();
+      img.src = imageData.src;
+      img.onload = function() {
+        ctx.drawImage(img, imageData.x, imageData.y, imageData.width, imageData.height);
+      };
     }
 
 
