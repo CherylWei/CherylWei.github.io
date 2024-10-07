@@ -422,16 +422,8 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         characters.forEach(item => {
-          if (item.char === 'image') {
-            const img = new Image();
-            img.src = item.src;
-            img.onload = function() {
-              ctx.drawImage(img, item.x, item.y, item.width, item.height);
-            };
-          else {
             ctx.fillStyle = item.color;
             ctx.fillText(item.char, item.x, item.y);
-          }
         });
     }
 
