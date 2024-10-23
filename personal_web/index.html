@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cheryl | Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href='../images/website_icon.png'>
+
+  
+  <style>
+    body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+    .w3-row-padding img {margin-bottom: 12px}
+    .bgimg {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url('../images/profile-background-1.jpg');
+      min-height: 100%;
+    }
+    .card {
+      position: relative;
+      width: 30%;
+      margin: 10px;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .card img { width: 100%; }
+    .card-content {
+      text-align: center;
+      padding: 10px;
+      background-color: white;
+    }
+    .card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .card:hover .card-overlay {
+      opacity: 1;
+    }
+    .overlay-button {
+      margin: 5px;
+      padding: 10px;
+      background-color: white;
+      color: black;
+      border: none;
+      cursor: pointer;
+    }
+    .w3-modal-content {
+      margin: 15% auto;
+      padding: 20px;
+      width: 80%;
+    }
+    .w3-modal {
+      display: none;
+      position: fixed;
+      z-index: 3;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    #bouncingBallCanvas {
+    display: block;
+    margin: 0 auto;
+    }
+    
+  </style>
+</head>
+<body>
+
+<!-- Sidebar with image -->
+<nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:20%">
+  <div class="bgimg"></div>
+</nav>
+
+<!-- Hidden Sidebar (reveals when clicked on menu icon)-->
+<nav class="w3-sidebar w3-black w3-animate-right w3-xxlarge" style="display:none;padding-top:150px;right:0;z-index:2" id="mySidebar">
+  <a href="javascript:void(0)" onclick="closeNav()" class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+    <i class="fa fa-remove"></i>
+  </a>
+  <div class="w3-bar-block w3-center">
+    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Home</a>
+    <a href="#portfolio" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Portfolio</a>
+    <a href="#about" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">About</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Contact</a>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="w3-main w3-padding-large" style="margin-left:20%">
+
+  <!-- Menu icon to open sidebar -->
+  <span class="w3-button w3-top w3-white w3-xxlarge w3-text-grey w3-hover-text-black" style="width:auto;right:0;" onclick="openNav()"><i class="fa fa-bars"></i></span>
+
+  <!-- Header -->
+<header class="w3-container w3-center" style="padding:128px 16px" id="home">
+    <canvas id="bouncingBallCanvas" width="500" height="150"></canvas>
+    <h5>Cheryl's Programming Journey.</h5>
+    <img src="../images/website_icon.png" style="width:13%; height:auto;;margin:5px 0">
+    <p>All python code is developed in adherence to the <a href="https://communitystandards.stanford.edu/policies-guidance/honor-code" target="_blank">Stanford Honor Code</a>.</p>
+    <button class="w3-button w3-light-grey w3-padding-large w3-margin-top">
+      <i class="fa fa-download"></i> Download Resume
+    </button>
+</header>
+  
+  <!-- Portfolio Section -->
+  <div class="w3-padding-32 w3-content" id="portfolio">
+    <h2 class="w3-text-grey">My Portfolio</h2>
+    <hr class="w3-opacity">
+
+    <!-- Filter Buttons -->
+    <div>
+      <button class="w3-button w3-light-grey w3-padding-large w3-margin-top filter-button" onclick="filterSelection('all')"> All Work</button>
+      <button class="w3-button w3-light-grey w3-padding-large w3-margin-top filter-button" onclick="filterSelection('object-oriented')"> Object Oriented</button>
+      <button class="w3-button w3-light-grey w3-padding-large w3-margin-top filter-button" onclick="filterSelection('advanced-data-structure')"> Advanced Data Structure</button>
+      <button class="w3-button w3-light-grey w3-padding-large w3-margin-top filter-button" onclick="filterSelection('financial-analysis')"> Time Series Analysis</button>
+      <button class="w3-button w3-light-grey w3-padding-large w3-margin-top filter-button" onclick="filterSelection('web-development')"> Web Development</button>
+    </div>
+  
+  <div class="w3-padding-32"></div>
+
+  <!-- Grid for Portfolio -->
+  <div class="w3-row-padding" style="margin:0 -16px">
+    
+    <!-- Grid Item 1 -->
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-center w3-card w3-hover-shadow">
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">Project 1</li>
+        <li class="w3-padding-16">
+          <img src="path/to/image-1.jpg" style="width:100%">
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal1').style.display='block'">Details</button>
+          <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Grid Item 2 -->
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-center w3-card w3-hover-shadow">
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">Project 2</li>
+        <li class="w3-padding-16">
+          <img src="path/to/image-2.jpg" style="width:100%">
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal2').style.display='block'">Details</button>
+          <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Grid Item 3 -->
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-center w3-card w3-hover-shadow">
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">Project 3</li>
+        <li class="w3-padding-16">
+          <img src="path/to/image-3.jpg" style="width:100%">
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal3').style.display='block'">Details</button>
+          <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Grid Item 4 -->
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-center w3-card w3-hover-shadow">
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">Project 4</li>
+        <li class="w3-padding-16">
+          <img src="path/to/image-4.jpg" style="width:100%">
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal4').style.display='block'">Details</button>
+          <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Grid Item 5 -->
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-center w3-card w3-hover-shadow">
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">Project 5</li>
+        <li class="w3-padding-16">
+          <img src="path/to/image-5.jpg" style="width:100%">
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal5').style.display='block'">Details</button>
+          <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Grid Item 6 -->
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-center w3-card w3-hover-shadow">
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">Project 6</li>
+        <li class="w3-padding-16">
+          <img src="path/to/image-6.jpg" style="width:100%">
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-white w3-padding-large w3-hover-black" onclick="document.getElementById('modal6').style.display='block'">Details</button>
+          <button class="w3-button w3-white w3-padding-large w3-hover-black">Code</button>
+        </li>
+      </ul>
+    </div>
+    <!-- End Portfolio Grid -->
+  </div>
+
+  <!-- Modal for Project 1 -->
+  <div id="modal1" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal1').style.display='none'"
+        class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>Project 1 Details</h2>
+      <p>Write your description for Project 1 here.</p>
+    </div>
+  </div>
+
+  <!-- Modal for Project 2 -->
+  <div id="modal2" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal2').style.display='none'"
+        class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>Project 2 Details</h2>
+      <p>Write your description for Project 2 here.</p>
+    </div>
+  </div>
+
+  <!-- Modal for Project 3 -->
+  <div id="modal3" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal3').style.display='none'"
+        class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>Project 3 Details</h2>
+      <p>Write your description for Project 3 here.</p>
+    </div>
+  </div>
+
+  <!-- Modal for Project 4 -->
+  <div id="modal4" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal4').style.display='none'"
+        class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>Project 3 Details</h2>
+      <p>Write your description for Project 3 here.</p>
+    </div>
+  </div>
+
+  <!-- Modal for Project 5 -->
+  <div id="modal5" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal5').style.display='none'"
+        class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>Project 3 Details</h2>
+      <p>Write your description for Project 3 here.</p>
+    </div>
+  </div>
+
+  <!-- Modal for Project 6 -->
+  <div id="modal6" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal6').style.display='none'"
+        class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>Project 3 Details</h2>
+      <p>Write your description for Project 3 here.</p>
+    </div>
+  </div>
+
+    
+    
+<!-- About Section -->
+<div class="w3-content w3-justify w3-text-grey w3-padding-32" id="about">
+  <h2>About</h2>
+  <hr class="w3-opacity">
+  <p>I am Cheryl. Some text about me. Some text about me. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing
+    elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </p>
+  
+  <h3 class="w3-padding-16">My Core Skills</h3>
+  <div class="w3-row w3-center w3-dark-grey w3-padding-16 w3-section" id="coreSkills">
+    <div class="w3-quarter w3-section">
+      <span class="w3-xlarge">Python</span><br>
+      100k+ lines of code
+    </div>
+    <div class="w3-quarter w3-section">
+      <span class="w3-xlarge">R</span><br>
+      Financial analysis focused
+    </div>
+    <div class="w3-quarter w3-section">
+      <span class="w3-xlarge">HTML/CSS/JavaScript</span><br>
+      First learned languages
+    </div>
+    <div class="w3-quarter w3-section">
+      <span class="w3-xlarge">SQL</span><br>
+      DataBase
+    </div>
+  </div>
+<!-- End About Section -->
+
+  
+<!-- Contact Section -->
+<div class="w3-padding-32 w3-content w3-text-grey" id="contact" style="margin-bottom:64px">
+  <h2>Contact Me</h2>
+  <hr class="w3-opacity">
+
+  <div class="w3-section">
+    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Taipei, Taiwan</p>
+    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +886 930091777</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: ms.cheryllin@gmail.com</p>
+  </div>
+
+  <!-- Image of location/map -->
+  <img src="../images/sunset-Malawi.jpg" style="width:100%;margin:32px 0">
+
+<!-- Footer. -->
+  <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin:-24px">
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <a href="https://github.com/yourusername" target="_blank">
+      <i class="fa fa-github w3-hover-opacity" style="font-size:24px"></i></a>
+    <h6>Stylesheet: Adapted from free <a href="https://www.w3schools.com/w3css/4/w3.css" target="_blank">W3.CSS Templates</a>.</h6>
+    <h6>Photos and Images: All photos and images are owned by me.</h6>
+    <!-- End footer -->
+  </footer>
+<!-- END PAGE CONTENT -->
+</div>
+
+<script>
+    const canvas = document.getElementById('bouncingBallCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Constants for the bouncing ball
+    const VX = 4.235;
+    const DELAY = 10; 
+    const GRAVITY = 1;
+    const SIZE = 6;
+    const REDUCE = 0.9;
+    const START_X = 10;
+    const START_Y = 0;
+
+    // Initial position and velocity
+    let x = START_X;
+    let y = START_Y;
+    let vy = 0;
+    let inBouncing = true;
+    let bounce_count = 0;
+    let redBallPositions = [];
+
+    const characters = [
+    { char: 'T', x: 22, y: 140 , color: '#4A6274'},
+    { char: 'S', x: 62, y: 140 , color: '#4A6274'},
+    { char: 'A', x: 102, y: 140 , color: '#4A6274'},
+    { char: 'I', x: 152.65, y: 140, color: '#4A6274', name: 'firstI' },
+    { char: 'W', x: 193, y: 140 , color: '#4A6274'},
+    { char: 'E', x: 265, y: 140 , color: '#4A6274'},
+    { char: 'I', x: 309.5, y: 140 , color: '#4A6274', name: 'secondI' },
+    { char: '·', x: 342, y: 140 , color: '#4A6274'},
+    { char: 'L', x: 375, y: 140 , color: '#4A6274'},
+    { char: 'I', x: 415, y: 140 , color: '#4A6274', name: 'thirdI' },
+    { char: 'N', x: 435, y: 140 , color: '#4A6274'}
+];
+
+  
+    // Function to adjust canvas scale
+    function adjustCanvasScale() {
+        const scale = window.devicePixelRatio;
+        const width = canvas.width;
+        const height = canvas.height;
+
+        canvas.width = width * scale;
+        canvas.height = height * scale;
+
+        ctx.scale(scale, scale);
+
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+    }
+
+    adjustCanvasScale();
+  
+    function drawText() {
+        ctx.font = `64px Montserrat`;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        characters.forEach(item => {
+            ctx.fillStyle = item.color;
+            ctx.fillText(item.char, item.x, item.y);
+        })
+            }
+
+
+    function startBouncing() {
+        vy = 0;
+        x = START_X;
+        y = START_Y;
+        bounce_count=0
+
+        function drawRedBall(x, y) {
+          const oldFillStyle = ctx.fillStyle;  // Store the current fill style
+          ctx.beginPath();
+          ctx.arc(x, y, SIZE, 0, Math.PI * 2);
+          ctx.fillStyle = "#E2725A";
+          ctx.fill();
+          ctx.closePath();
+          ctx.fillStyle = oldFillStyle; // Restore the fill style
+        }
+
+        function animate() {
+            if (!inBouncing) return; // Stop the animation if inBouncing is false
+
+            vy += GRAVITY;
+            x += VX;
+            y += vy;
+
+            // Check for bottom collision
+            if (y >= canvas.height / window.devicePixelRatio / 2 + 10) {
+                y = canvas.height / window.devicePixelRatio / 2 + 10;
+                vy = -vy * REDUCE; // Reverse velocity with reduction
+                bounce_count++;
+
+                if (bounce_count == 2) {
+                  characters.find(char => char.name === 'firstI').color = '#E2725A';
+              } else if (bounce_count == 4) {
+                  characters.find(char => char.name === 'secondI').color = '#E2725A';
+              } else if (bounce_count == 6) {
+                  characters.find(char => char.name === 'thirdI').color = '#E2725A';
+              }
+
+                if (bounce_count == 2 || bounce_count == 4 || bounce_count == 6) {
+                      redBallPositions.push({ x: x, y: y });
+                  }
+              }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawText(); // Draw the text again
+
+            // Draw the red balls
+          redBallPositions.forEach(position => {
+              drawRedBall(position.x, position.y);
+          });
+
+            // Draw bouncing ball
+            ctx.beginPath();
+            ctx.arc(x, y, SIZE, 0, Math.PI * 2);
+            ctx.fillStyle = "black";
+            ctx.fill();
+            ctx.closePath();
+
+
+            // Continue the animation
+            setTimeout(animate, DELAY);
+        }
+
+        animate();
+    }
+
+    document.addEventListener('DOMContentLoaded', startBouncing);
+
+  
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "60%";
+    document.getElementById("mySidebar").style.display = "block";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
+
+  // Filter functionality
+  function filterSelection(category) {
+    var cards = document.getElementsByClassName('card');
+    if (category === 'all') category = '';
+    for (let i = 0; i < cards.length; i++) {
+      removeClass(cards[i], 'show');
+      if (cards[i].className.indexOf(category) > -1) addClass(cards[i], 'show');
+    }
+  }
+
+  function addClass(element, name) {
+    let classes = element.className.split(' ');
+    if (classes.indexOf(name) === -1) {
+      element.className += ' ' + name;
+    }
+  }
+
+  function removeClass(element, name) {
+    let classes = element.className.split(' ');
+    while (classes.indexOf(name) > -1) {
+      classes.splice(classes.indexOf(name), 1);
+    }
+    element.className = classes.join(' ');
+  }
+
+  // Initialize to show all work
+  document.addEventListener('DOMContentLoaded', () => filterSelection('all'));
+
+// Function to check if an element is in viewport
+  function isElementInViewport(el) {
+    var rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  // Function to add animation class to skills section
+  function animateSkills() {
+    var skillsSection = document.getElementById('coreSkills');
+    if (isElementInViewport(skillsSection)) {
+      skillsSection.classList.add('w3-animate-left');
+      window.removeEventListener('scroll', animateSkills);
+    }
+  }
+
+  // Add scroll event listener
+  window.addEventListener('scroll', animateSkills);
+
+  // Initial check if the skills section is already in view
+  animateSkills();
+</script>
+</body>
+</html>
