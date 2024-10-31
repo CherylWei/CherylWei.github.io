@@ -11,8 +11,14 @@
 
   
   <style>
-    body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
-    .w3-row-padding img {margin-bottom: 12px}
+    body, h1, h2, h3, h4, h5, h6 {
+      font-family: "Montserrat", sans-serif;
+    }
+    
+    .w3-row-padding img {
+      margin-bottom: 12px;
+    }
+    
     .bgimg {
       background-position: center;
       background-repeat: no-repeat;
@@ -20,19 +26,19 @@
       background-image: url('../images/profile-background-1.jpg');
       min-height: 100%;
     }
-    .card {
-      position: relative;
-      width: 30%;
-      margin: 10px;
-      display: inline-block;
-      vertical-align: top;
+    
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
     }
-    .card img { width: 100%; }
+    
     .card-content {
       text-align: center;
       padding: 10px;
       background-color: white;
     }
+    
     .card-overlay {
       position: absolute;
       top: 0;
@@ -48,22 +54,17 @@
       align-items: center;
       flex-direction: column;
     }
+    
     .card:hover .card-overlay {
       opacity: 1;
     }
-    .overlay-button {
-      margin: 5px;
-      padding: 10px;
-      background-color: white;
-      color: black;
-      border: none;
-      cursor: pointer;
-    }
+    
     .w3-modal-content {
       margin: 15% auto;
       padding: 20px;
       width: 80%;
     }
+    
     .w3-modal {
       display: none;
       position: fixed;
@@ -74,19 +75,78 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgb(0,0,0);
-      background-color: rgba(0,0,0,0.4);
-    }
-
-    #bouncingBallCanvas {
-    display: block;
-    margin: 0 auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
     }
     
-  </style>
-</head>
-<body>
+    #bouncingBallCanvas {
+      display: block;
+      margin: 0 auto;
+    }
 
+    .project-image {
+      position: relative;
+      overflow: hidden; /* Ensure overlay is contained */
+      height: 250px; /* Set fixed height for the image container */
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%; /* Ensure the image fills the container */
+      object-fit: cover; /* Cover the container while maintaining aspect ratio */
+    }
+    
+    .overlay-slide {
+      position: absolute;
+      bottom: -100%; /* Ensure overlay is hidden below the image */
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      transition: .4s ease;
+      display: flex;
+      justify-content: center;  /* Center items horizontally */
+      align-items: center; 
+    }
+
+    
+    .project-image:hover .overlay-slide {
+      bottom: 0; /* Slide overlay upwards */
+    }
+    
+    .overlay-content {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    
+    .w3-button.w3-light-grey.w3-padding-large.w3-margin-top {
+      background-color: #f1f1f1;
+    }
+    
+    .filter-button {
+      margin: 5px;
+      padding: 10px;
+      cursor: pointer;
+      background-color: white;
+      transition: background-color 0.3s;
+    }
+    
+    .filter-button:hover {
+      background-color: #ddd;
+    }
+    
+    .show {
+      display: block !important;
+    }
+  </style>
+
+</head>
+
+<body>
 <!-- Sidebar with image -->
 <nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:20%">
   <div class="bgimg"></div>
@@ -117,10 +177,11 @@
     <h5>Cheryl's Programming Journey.</h5>
     <img src="../images/website_icon.png" style="width:13%; height:auto;;margin:5px 0">
     <p>All python code is developed in adherence to the <a href="https://communitystandards.stanford.edu/policies-guidance/honor-code" target="_blank">Stanford Honor Code</a>.</p>
-    <a href="Tsai-Wei_CV.pdf" download class="w3-button w3-light-grey w3-padding-large w3-margin-top">
+    <button class="w3-button w3-light-grey w3-padding-large w3-margin-top">
       <i class="fa fa-download"></i> Download Resume
-      </a>
+    </button>
 </header>
+
   
   <!-- Portfolio Section -->
   <div class="w3-padding-32 w3-content" id="portfolio">
@@ -137,6 +198,374 @@
     </div>
   
   <div class="w3-padding-32"></div>
+
+
+  <!-- Grid for Portfolio -->
+  <div class="w3-row-padding" style="margin:0 -16px">
+
+    <!-- Grid Item 1 -->
+    <div class="w3-third w3-margin-bottom card object-oriented">
+      <div class="project-image">
+        
+        <img src="/Users/cheryllin/Desktop/coding_img06.jpg" style="width:100%; height:250px; object-fit:cover;">
+          <div class="overlay-content">
+            <div class="w3-xlarge">Baby Names Trends</div>
+            <div class="w3-small" style="margin: 10px 0;">
+              <span class="w3-tag w3-light-grey w3-medium">#python</span>
+              <span class="w3-tag w3-light-grey w3-medium">#data structure</span>
+            </div>
+            <p class="w3-medium">An engaging and interactive breakout game.</p>
+            </div>
+            <div class="overlay-slide">
+            <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="document.getElementById('modal1').style.display='block'">Details</button>
+            <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="window.open('https://github.com/CherylWei/BouncyBreakoutGame', '_blank')">Code</button>
+          </div>      
+      </div>
+    </div>
+
+    <!-- Grid Item 2 -->
+    <div class="w3-third w3-margin-bottom card object-oriented advanced-data-structure">
+      <div class="project-image">
+        
+        <img src="/Users/cheryllin/Desktop/coding_img01.jpg" style="width:100%; height:250px; object-fit:cover;">
+          <div class="overlay-content">
+            <div class="w3-xlarge">Bouncy Breakout Game</div>
+            <div class="w3-small" style="margin: 10px 0;">
+              <span class="w3-tag w3-light-grey w3-medium">#python</span>
+              <span class="w3-tag w3-light-grey w3-medium">#data structure</span>
+            </div>
+            <p class="w3-medium">An engaging and interactive breakout game.</p>
+            </div>
+            <div class="overlay-slide">
+            <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="document.getElementById('modal2').style.display='block'">Details</button>
+            <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="window.open('https://github.com/CherylWei/BouncyBreakoutGame', '_blank')">Code</button>
+          </div>      
+      </div>
+    </div>
+  
+
+    <!-- Grid Item 3 -->
+   <div class="w3-third w3-margin-bottom card advanced-data-structure">
+        <div class="project-image">
+          <img src="/Users/cheryllin/Desktop/coding_img04.jpg" style="width:100%; height:250px; object-fit:cover;">
+            <div class="overlay-content">
+              <div class="w3-xlarge">CheryLotoshop</div>
+              <div class="w3-small" style="margin: 10px 0;">
+                <span class="w3-tag w3-light-grey w3-medium">#python</span>
+                <span class="w3-tag w3-light-grey w3-medium">#data structure</span>
+              </div>
+              <p class="w3-medium">An application designed to help users remove unwanted objects from beautiful photos.</p>
+              </div>
+              <div class="overlay-slide">
+                <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="document.getElementById('modal3').style.display='block'">Details</button>
+                <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="window.open('https://github.com/CherylWei/BouncyBreakoutGame', '_blank')">Code</button>
+            </div>      
+        </div>
+      </div>
+  
+    <!-- Grid Item 4 -->
+   <div class="w3-third w3-margin-bottom card financial-analysis">
+        <div class="project-image">
+          <img src="/Users/cheryllin/Desktop/coding_img03.jpg" style="width:100%; height:250px; object-fit:cover;">
+            <div class="overlay-content">
+              <div class="w3-xlarge">Stock-Prediction-Model</div>
+              <div class="w3-small" style="margin: 10px 0;">
+                <span class="w3-tag w3-light-grey w3-medium">#R</span>
+                <span class="w3-tag w3-light-grey w3-medium">#time series</span>
+              </div>
+              <p class="w3-medium">Analyzing and forecasting stock prices with ARIMA & GARCH models.</p>
+              </div>
+              <div class="overlay-slide">
+                <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="document.getElementById('modal4').style.display='block'">Details</button>
+                <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="window.open('https://github.com/CherylWei/TSM-Stock-Prediction-Models', '_blank')">Code</button>
+            </div>      
+        </div>
+      </div>
+  
+    <!-- Grid Item 5 -->
+   <div class="w3-third w3-margin-bottom card web-development">
+        <div class="project-image">
+          <img src="/Users/cheryllin/Desktop/coding_img07.jpg" style="width:100%; height:250px; object-fit:cover;">
+            <div class="overlay-content">
+              <div class="w3-xlarge">Personal Website</div>
+              <div class="w3-small" style="margin: 10px 0;">
+                <span class="w3-tag w3-light-grey w3-medium">#R</span>
+                <span class="w3-tag w3-light-grey w3-medium">#time series</span>
+              </div>
+              <p class="w3-medium">Analyzing and forecasting stock prices with ARIMA & GARCH models.</p>
+              </div>
+              <div class="overlay-slide">
+                <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="document.getElementById('modal5').style.display='block'">Details</button>
+                <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="window.open('https://github.com/CherylWei/CherylWei.github.io', '_blank')">Code</button>
+            </div>      
+        </div>
+      </div>
+
+  
+    <!-- Grid Item 6 -->
+   <div class="w3-third w3-margin-bottom card object-oriented">
+        <div class="project-image">
+          <img src="/Users/cheryllin/Desktop/coding_img05.jpg" style="width:100%; height:250px; object-fit:cover;">
+            <div class="overlay-content">
+              <div class="w3-xlarge">Object-Oriented Drawing Tool</div>
+              <div class="w3-small" style="margin: 10px 0;">
+                <span class="w3-tag w3-light-grey w3-medium">#R</span>
+                <span class="w3-tag w3-light-grey w3-medium">#time series</span>
+              </div>
+              <p class="w3-medium">Analyzing and forecasting stock prices with ARIMA & GARCH models.</p>
+              </div>
+              <div class="overlay-slide">
+                <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="document.getElementById('modal6').style.display='block'">Details</button>
+                <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="window.open('https://github.com/CherylWei/Object-OrientedDrawingTool', '_blank')">Code</button>
+            </div>      
+        </div>
+      </div>
+
+    <!-- End Portfolio Grid -->
+  </div>
+
+  <!-- Modal for Project 1 -->
+  <div id="modal1" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal1').style.display='none'"
+         class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>Baby Names Trends</h2>
+      
+      <!-- Icons -->
+      <div style="margin: 20px 0;">
+        <i class="fa fa-database w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Data Aggregation</span>&nbsp;&nbsp;
+        <i class="fa fa-search w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Search Functionality</span>&nbsp;&nbsp;
+        <i class="fa fa-line-chart w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Trend Visualization</span>
+      </div>
+      
+      <!-- Description -->
+      <p style="text-align: left; margin: 20px;">
+          The "Baby Names Trends" project is a full-stack application that provides an intuitive interface for users to explore historical trends of baby names from 1900 to 2020. Key features include:
+          <ul style="text-align: left; margin: 20px;">
+            <li><b>Data Aggregation:</b> Collates baby name data from multiple files into a comprehensive dataset.</li>
+            <li><b>Search Functionality:</b> Allows users to search for specific baby names and see their rank over the years. Utilizes case-insensitive search to ensure a seamless user experience.</li>
+            <li><b>Trend Visualization:</b> Plots historical trends of baby names on a graphical interface using Tkinter. The graph displays name rankings over decades, illustrating their popularity changes.</li>
+          </ul>
+      </p>
+
+      <!-- Links -->
+      <div style="margin: 20px;">
+        <button class="w3-button w3-light-grey w3-padding-large w3-hover-black" onclick="window.open('https://github.com/CherylWei/BouncyBreakoutGame', '_blank')">View Code on GitHub</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Modal for Project 2 -->
+  <div id="modal2" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal2').style.display='none'"
+         class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>Breakout Game</h2>
+      
+      <!-- Icons -->
+      <div style="margin: 20px 0;">
+        <i class="fa fa-gamepad w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Interactive Gameplay</span>&nbsp;&nbsp;
+        <i class="fa fa-user w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">User Controls</span>&nbsp;&nbsp;
+        <i class="fa fa-code w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Python Programming</span>
+      </div>
+
+      <!-- Description -->
+    <h3>Description</h3>
+    <blockquote style="font-style: italic; color: #555; margin: 20px;">
+      The primary purpose of this project is to demonstrate my ability to create a comprehensive and functional application using Python. This project showcases my skills in graphical programming, event handling, and user interaction by developing a classic arcade game.
+    </blockquote>
+    <p style="text-align: left; margin: 20px;">
+        The "Breakout Game" project is a classic arcade-style game implemented in Python. Players control a paddle to bounce a ball and break all the bricks on the screen. The player starts with 3 lives and must use the paddle to prevent the ball from falling off the bottom edge of the screen. Key features include:
+        <ul style="text-align: left; margin: 20px;">
+          <li><b>Interactive Gameplay:</b> The game provides an engaging and interactive experience where players use a mouse to control the paddle.</li>
+          <li><b>User Controls:</b> A responsive control system allows players to move the paddle precisely to hit the ball and destroy bricks.</li>
+          <li><b>Python Programming:</b> Utilizes Python and the Campy graphics library to create a graphical window, handle user inputs, and manage game state.</li>
+        </ul>
+    </p>
+
+
+    <!-- Links -->
+    <div style="margin: 20px;">
+      <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="window.open('https://github.com/CherylWei/BreakoutProject', '_blank')">View Code on GitHub</button>
+    </div>
+  </div>
+</div>
+
+  <!-- Modal for Project 3 -->
+  <div id="modal3" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal3').style.display='none'"
+         class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>CheryLotoshop</h2>
+      
+      <!-- Icons -->
+      <div style="margin: 20px 0;">
+        <i class="fa fa-magic w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Image Processing</span>&nbsp;&nbsp;
+        <i class="fa fa-image w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Photo Editing</span>&nbsp;&nbsp;
+        <i class="fa fa-code w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Python Programming</span>
+      </div>
+      
+      <!-- Description -->
+      <h3>Description</h3>
+      <blockquote style="font-style: italic; color: #555; margin: 20px;">
+        The primary purpose of this project is to showcase my skills in image processing and photo editing using Python. It demonstrates my ability to implement complex algorithms to manipulate and merge images, creating a clean final product.
+      </blockquote>
+      <p style="text-align: left; margin: 20px;">
+          The "CheryLotoshop" project, adapted from Nick Parlante's Ghost assignment, is an image processing application developed in Python. The program allows users to remove unwanted objects from photos by computing and displaying a composite image based on several input images. Key features include:
+          <ul style="text-align: left; margin: 20px;">
+            <li><b>Image Processing:</b> Utilizes algorithms to compare pixel values and create a "ghost" effect, seamlessly merging multiple images.</li>
+            <li><b>Photo Editing:</b> Allows users to remove unwanted objects from photos, creating cleaner and more visually appealing images.</li>
+            <li><b>Python Programming:</b> Employs Python and the SimpleImage library to handle image manipulation and display results.</li>
+          </ul>
+      </p>
+
+      <!-- Links -->
+      <div style="margin: 20px;">
+        <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="window.open('https://github.com/CherylWei/CheryLotoshop', '_blank')">View Code on GitHub</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal for Project 4 -->
+  <div id="modal4" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal4').style.display='none'"
+         class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>Stock Prediction Model</h2>
+      
+      <!-- Icons -->
+      <div style="margin: 20px 0;">
+        <i class="fa fa-line-chart w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Time Series Analysis</span>&nbsp;&nbsp;
+        <i class="fa fa-calculator w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">ARIMA Model</span>&nbsp;&nbsp;
+        <i class="fa fa-bolt w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">GARCH Model</span>
+      </div>
+      
+      <!-- Description -->
+      <h3>Description</h3>
+      <blockquote style="font-style: italic; color: #555; margin: 20px;">
+        The primary purpose of this project is to demonstrate my proficiency in time series analysis and forecasting using ARIMA and GARCH models. It highlights my ability to apply statistical methods to real-world financial data and evaluate the accuracy of predictive models.
+      </blockquote>
+      <p style="text-align: left; margin: 20px;">
+          The "Stock Prediction Models" project involves time series analysis of stock prices using ARIMA and GARCH models. The project focuses on forecasting stock returns and assessing the accuracy of the predictions using backtesting techniques. Key features include:
+          <ul style="text-align: left; margin: 20px;">
+            <li><b>Time Series Analysis:</b> Analyzes historical stock prices to forecast future trends.</li>
+            <li><b>ARIMA Model:</b> Utilizes the ARIMA model to predict stock prices based on past values and error terms.</li>
+            <li><b>GARCH Model:</b> Employs the GARCH model to forecast stock price volatility and returns.</li>
+          </ul>
+      </p>
+
+      <!-- Links -->
+      <div style="margin: 20px;">
+        <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="window.open('https://github.com/CherylWei/StockPredictionModels', '_blank')">View Code on GitHub</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal for Project 5 -->
+  <div id="modal5" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal5').style.display='none'"
+         class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>Personal Website</h2>
+      
+      <!-- Icons -->
+      <div style="margin: 20px 0;">
+        <i class="fa fa-globe w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Web Development</span>&nbsp;&nbsp;
+        <i class="fa fa-user w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Portfolio</span>&nbsp;&nbsp;
+        <i class="fa fa-code w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">HTML/CSS/JS</span>
+      </div>
+      
+      <!-- Description -->
+      <h3>Description</h3>
+      <blockquote style="font-style: italic; color: #555; margin: 20px;">
+        The primary purpose of this project is to create an online presence that effectively communicates my personal brand and professional portfolio. It highlights my web development skills and serves as a platform for networking and showcasing my work to potential employers and collaborators.
+      </blockquote>
+      <p style="text-align: left; margin: 20px;">
+          The "Personal Website" project is a comprehensive showcase of my skills, accomplishments, and projects. This website serves as an interactive portfolio where visitors can learn more about me, explore my work, and get in touch. Key features include:
+          <ul style="text-align: left; margin: 20px;">
+            <li><b>Web Development:</b> Demonstrates my web development skills using HTML, CSS, and JavaScript.</li>
+            <li><b>Portfolio:</b> Provides a structured and visually appealing presentation of my projects and achievements.</li>
+            <li><b>Responsive Design:</b> Ensures the website is accessible and looks great on all devices, from desktops to mobile phones.</li>
+          </ul>
+      </p>
+
+      <!-- Links -->
+      <div style="margin: 20px;">
+        <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="window.open('https://github.com/CherylWei/PersonalWebsite', '_blank')">View Code on GitHub</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal for Project 6 -->
+  <div id="modal6" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-center w3-padding-16">
+      <a href="javascript:void(0)" onclick="document.getElementById('modal6').style.display='none'"
+         class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h2>Object-Oriented Drawing Tool</h2>
+      
+      <!-- Icons -->
+      <div style="margin: 20px 0;">
+        <i class="fa fa-pencil w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Drawing Tool</span>&nbsp;&nbsp;
+        <i class="fa fa-paint-brush w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Graphic Design</span>&nbsp;&nbsp;
+        <i class="fa fa-code w3-xxlarge" aria-hidden="true"></i>&nbsp;
+        <span class="w3-large">Python Programming</span>
+      </div>
+      
+      <!-- Description -->
+      <h3>Description</h3>
+      <blockquote style="font-style: italic; color: #555; margin: 20px;">
+        The primary purpose of this project is to showcase my creativity and proficiency in graphical programming using Python. It demonstrates my ability to develop interactive applications and create detailed graphic designs, reflecting my artistic skills and technical knowledge.
+      </blockquote>
+      <p style="text-align: left; margin: 20px;">
+          The "Object-Oriented Drawing Tool" project is a creative application developed in Python. It allows users to interactively draw lines on a canvas by clicking on the start and end points. Additionally, the project includes a beautifully crafted image depicting a serene scene. Key features include:
+          <ul style="text-align: left; margin: 20px;">
+            <li><b>Drawing Tool:</b> Enables users to draw lines on the canvas by selecting start and end points with their mouse clicks.</li>
+            <li><b>Graphic Design:</b> Incorporates a detailed background image titled "Fishing at Sunset" that exhibits complex shapes and designs.</li>
+            <li><b>Python Programming:</b> Utilizes Python and the Campy graphics library for graphical interface and event handling.</li>
+          </ul>
+      </p>
+
+      <!-- Links -->
+      <div style="margin: 20px;">
+        <button class="w3-button w3-light-grey w3-padding-large filter-button" onclick="window.open('https://github.com/CherylWei/ObjectOrientedDrawingTool', '_blank')">View Code on GitHub</button>
+      </div>
+    </div>
+  </div>
+
     
 <!-- About Section -->
 <div class="w3-content w3-justify w3-text-grey w3-padding-32" id="about">
