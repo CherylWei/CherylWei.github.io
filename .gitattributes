@@ -1,7 +1,1 @@
-# Explicitly mark files as detectable languages
-*.html linguist-detectable=true
-*.css linguist-detectable=true
-*.js linguist-detectable=true
-
-# Optionally exclude files or directories
-docs/** linguist-documentation
+index.html linguist-detectable=true
